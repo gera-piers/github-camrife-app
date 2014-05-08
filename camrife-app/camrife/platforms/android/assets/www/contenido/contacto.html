@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Camrife</title>
+    
+	<meta charset="utf-8" />
+	<meta name="format-detection" content="telephone=yes" />
+	<!-- WARNING: for iOS 7, remove the width=device-width and height=device-height attributes. See https://issues.apache.org/jira/browse/CB-4323 -->
+    <meta id="extViewportMeta" name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black" />
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	
+	<link rel="stylesheet" href="../jquery-mobile/jquery.mobile-1.4.2.css" />
+	<link rel="stylesheet" href="../jquery-mobile/camrife-theme.min.css" />
+	<link rel="stylesheet" type="text/css" href="../css/simpleDialog.css" />	
+	<style>
+		#contenido {
+			position: absolute;
+		   top: 50%;
+		   margin-top: -180px;
+		   left: 50%;
+		   margin-left: -180px;                  
+   		   text-align:center;
+		}
+		
+		label {
+			color: #ff1a1a;
+		}
+		
+		a{
+			color:#d7191f;
+		}
+		a:link {text-decoration:none; color:#d7191f;}
+		a:visited {text-decoration:none;}
+		a:hover {text-decoration:none; color:#921115;}
+		a:active {text-decoration:none;}
+		
+		label.error {
+				color: red;
+				font-size: 16px;
+				font-weight: normal;
+				line-height: 1.4;
+				margin-top: 0.5em;
+				width: 100%;
+				float: none;
+		}
+
+		@media screen and (orientation: portrait){
+				label.error { margin-left: 0; display: block; }
+		}
+
+		@media screen and (orientation: landscape){
+				label.error { display: inline-block; margin-left: 22%; }
+		}
+
+		em { color: red; font-weight: bold; padding-right: .25em; }
+		
+	</style>
+      <!-- Scripts go here -->
+	<!--<script type="text/javascript" src="cordova.js"></script>-->
+	<script type="text/javascript" src="../js/jquery.js"></script>
+	<script type="text/javascript" src="../jquery-mobile/jquery.mobile-1.4.2.min.js"></script>
+	<script type="text/javascript" src="../js/simpleDialog.js"></script>
+	<script type="text/javascript" src="../js/jquery.validate.min.js"></script>
+	<script type="text/javascript">
+	
+		document.addEventListener("backbutton", onBackKeyDown, false);
+		function onBackKeyDown(e) {
+		  e.preventDefault();
+		}
+		//Validación
+		$(document).ready(function(){
+			$("#enviarComentarios").click(function(){
+				$('form').validate({
+					rules: {
+						email: {
+							required: true
+						},
+						nombre: {
+							required: true
+						}
+					}
+				});
+			
+				$.ajax({
+					url: "http://viajescamrife.com/sendMail.php",
+					type: "POST",
+					data: {
+						nombre: $("#nombre").val(),
+						email: $("#email").val(),
+						comentario: $("#comentario").val(),
+						telefono: $("#telefono").val()
+					}
+				}).done(function(){
+					//Se envió el correo
+					$('<div>').simpledialog2({
+					mode: 'button',
+					headerText: 'Camrife Móvil',
+					headerClose: true,
+					buttonPrompt: 'Gracias por ponerse en contacto, nos comunicaremos pronto',
+					buttons : {
+					  'OK': {
+						click: function () { 
+						  $('#buttonoutput').text('OK');
+						}
+					  }
+					}
+				  });
+				});
+			});
+		});
+		
+	</script>
+
+</head>
+<body>
+	<div data-role="page" id="pagethree">
+		<!-- header -->
+		<div data-role="header" data-theme="c">
+		<!-- menú -->
+		<a href="#popupMenu" data-rel="popup" data-transition="flip" data-iconpos="notext" class="ui-btn ui-corner-all ui-shadow ui-btn-inline ui-icon-bars ui-btn-icon-left ui-btn-c">Menú</a>				
+		<div data-role="popup" id="popupMenu" data-theme="c">
+				<ul data-role="listview" data-inset="true" style="min-width:210px;">
+					<li onclick="location.href='principal.html'"><a href="">Menú Principal</a></li>
+					<li onclick="location.href='cotizador.html'"><a href="">Cotizador</a></li>
+					<li onclick="window.open('http://viajescamrife.com', '_system', 'location=yes');"><a href="">Promociones</a></li>
+					<li onclick="location.href='contacto.html'"><a href="">Contacto</a></li>
+				</ul>
+		</div>
+		<!-- fin del menú -->
+				<h1>Contacto</h1>
+		</div>
+        <!-- /header -->
+        
+        <!-- content -->
+        <div id="page">
+        <!-- datos -->
+        <div id="datos">
+        <p style="color:#0099cc;"><strong>Dirección:</strong></p>
+		<p style="color:#ff1a1a;">José Benítez 2530 L-2 
+		Plaza Axioma, Col. Obispado 
+		Monterrey, Nuevo León</p>
+		<p style="color:#0099cc;"><strong>Teléfono</strong></p>
+		<a href="tel:+52 81 1769 7600">+52 81 1769 7600</a>
+		<p style="color:#0099cc;"><strong>Email</strong></p>
+		<p style="color:#ff1a1a;">info@viajescamrife.com</p><br />
+		<p style="color:#0099cc;"><strong>También puedes llenar esta forma de conctacto.</strong></p>
+		<br />
+        </div>
+        <!-- /datos -->
+			<form>
+				<label for="nombre"><em>* </em>Nombre:</label>
+				<input name="nombre" id="nombre" type="text" />
+				<label for="email"><em>* </em>E-mail:</label>
+				<input name="email" id="email" type="text" id="email" />
+				<label for="telefono">Teléfono</label>
+				<input name="telefono" id="telefono" type="text" />
+				<label for="comentario">Comentarios:</label>
+				<textarea cols="40" rows="8" name="comentario" id="comentario" maxlength="50"></textarea>
+				<input type="submit" id="enviarComentarios" class="btnLogin" value="Enviar" data-icon="mail" data-theme="c">
+				<div data-role="footer" data-theme="c" data-position="fixed"><h6>&copy; Camrife. Todos los Derechos Reservados. Desarrollado por Leaderes</h6></div>
+			</form>
+		</div>
+</div><!-- /page -->
+</div>
+
+
+</body>
+</html>

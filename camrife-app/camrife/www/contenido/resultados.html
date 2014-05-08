@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Camrife</title>
+    
+	<meta charset="utf-8" />
+	<meta name="format-detection" content="telephone=yes" />
+	<!-- WARNING: for iOS 7, remove the width=device-width and height=device-height attributes. See https://issues.apache.org/jira/browse/CB-4323 -->
+    <meta id="extViewportMeta" name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black" />
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	
+	<link rel="stylesheet" href="../jquery-mobile/jquery.mobile-1.4.2.css" />	
+	<link rel="stylesheet" href="../jquery-mobile/camrife-theme.min.css" />
+	<style>
+		#contenido {
+			position: absolute;
+		   top: 60%;
+		   margin-top: -180px;
+		   left: 53%;
+		   margin-left: -180px;                  
+   		   text-align:center;
+		}
+		a{
+			color:#d7191f;
+		}
+		a:link {text-decoration:none; color:#d7191f;}
+		a:visited {text-decoration:none;}
+		a:hover {text-decoration:none; color:#921115;}
+		a:active {text-decoration:none;}
+		
+		label{
+			color: #ff1a1a;
+			font-size:130% !important;
+		}
+		
+		spam{
+			color:#0099cc;
+		}
+		
+		.diff{
+			color: green;
+			font-weight:900;
+		}
+		
+	</style>
+      <!-- Scripts go here -->
+	<!--<script type="text/javascript" src="cordova.js"></script>-->
+	<script type="text/javascript" src="../js/jquery.js"></script>
+	<script type="text/javascript" src="../jquery-mobile/jquery.mobile-1.4.2.min.js"></script>
+	<script>
+	function onLoad() {
+        document.addEventListener("deviceready", onDeviceReady, false);
+    }
+
+    // device APIs are available
+    //
+    function onDeviceReady() {
+        // Register the event listener
+        document.addEventListener("backbutton", onBackKeyDown, false);
+    }
+
+    // Handle the back button
+    //
+    function onBackKeyDown() {
+		  e.preventDefault();
+    }
+	</script>
+</head>
+<body>
+	<div data-role="page" id="pagethree">
+		<!-- header -->
+		<div data-role="header" data-theme="c">
+		<!-- menú -->
+		<a href="#popupMenu" data-rel="popup" data-transition="flip" data-iconpos="notext" class="ui-btn ui-corner-all ui-shadow ui-btn-inline ui-icon-bars ui-btn-icon-left ui-btn-c">Menú</a>				
+		<div data-role="popup" id="popupMenu" data-theme="c">
+				<ul data-role="listview" data-inset="true" style="min-width:210px;">
+					<li onclick="location.href='principal.html'"><a href="">Menú Principal</a></li>
+					<li onclick="location.href='cotizador.html'"><a href="">Cotizador</a></li>
+					<li onclick="window.open('http://viajescamrife.com', '_system', 'location=yes');"><a href="">Promociones</a></li>
+					<li onclick="location.href='contacto.html'"><a href="">Contacto</a></li>
+				</ul>
+		</div>
+		<!-- fin del menú -->
+				<h1>Resultados</h1>
+		</div>
+        <!-- /header -->
+        
+        <!-- content -->
+	<div>
+		<div class="vuelo">
+		<label>Desde:<spam> Monterrey</spam></label>
+		<label>A:<spam> México</spam></label>
+		<label class="diff">Vuelo Ida</label><label> Fecha:<spam> 12/12/12</spam></label>
+		<label>Salida: <spam>12/12/12</spam>&nbsp; Llegada:<spam>12/12/12</spam></label>
+		<label>Volaris</label>
+		<hr />
+		<label>Desde:<spam> México</spam></label>
+		<label>A:<spam> Monterrey</spam></label>
+		<label class="diff">Vuelo Regreso</label><label> Fecha:<spam> 12/12/12</spam></label>
+		<label>Salida: <spam>12/12/12</spam>&nbsp; Llegada:<spam>12/12/12</spam></label>
+		<label>Volaris</label>
+		<hr />
+		<hr />
+		</div>
+	</div>
+     
+		<div data-role="footer" data-theme="c" data-position="fixed"><h6>&copy; Camrife. Todos los Derechos Reservados. Desarrollado por Leaderes</h6></div>
+</div>
